@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    
+    #myDIV h2{
+text-align: left;
+margin-top: 5px;
+padding: 10px;
+background-color: beige;
+width: 600px;
+    }
+    #myInput{
+        padding: 10px;
+        background-color: ghostwhite;
+        border-radius: 3px;
+        border: 1px solid #999;
+        width: 300px;
+        margin: 0 auto;
+        line-height: 20px;
+        font-size: 16px;
+    }
+    .addBtn{
+        padding: 10px;
+        background-color:goldenrod;
+        border: 1px solid #999;
+        border-radius: 3px;
+        line-height: 20px;
+        font-size: 16px;
+        }
+        #myUL{
+            margin: 0;
+            padding: 0;
+            width: 600px;
+        }
+        #myUL li{
+padding: 10px;
+background-color:antiquewhite;
+list-style-type: none;
+position: relative;
+        }
+        #myUL li:nth-child(odd) {
+            background-color:azure;
+        }
+        .timeformat{
+            position: absolute;
+            right: 5px;
+        }
+</style>
+</head>
+
+<body>
+
+    <div id="myDIV" class="header">
+        <h2>My To Do List</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
+    </div>
+
+    <ul id="myUL">
+
+    </ul>
+
+    <script>
+
+        function newElement() {
+            var li = document.createElement("li");
+            var inputValue = document.getElementById("myInput").value;
+            var t = document.createTextNode(inputValue);
+            var d = new Date,
+                dformat = [d.getMonth() + 1,
+                d.getDate(),
+                d.getFullYear()].join('/') + ' ' +
+                    [d.getHours(),
+                    d.getMinutes(),
+                    d.getSeconds()].join(':');
+
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+            }
+            document.getElementById("myInput").value = "";
+
+            var span = document.createElement("SPAN");
+            var time = document.createTextNode(dformat);
+            span.className = "timeformat";
+            span.appendChild(time);
+            li.appendChild(span);
+        }
+    </script>
+
+</body>
+
+</html>
